@@ -34,7 +34,7 @@ from geoip2.errors import AddressNotFoundError
 from sqlalchemy import and_
 
 from config import load_config, DefaultFlaskConfig
-from crawler import init_geoip, connect
+from crawler import COUNTRY, CITY, ASN, connect
 from models import *
 import pandas as pd
 from autodoc import Autodoc
@@ -47,7 +47,6 @@ app.config.from_object('flask_config')
 db = SQLAlchemy(app)
 
 CONF = load_config()
-COUNTRY, CITY, ASN = init_geoip()
 
 @app.route('/')
 @app.route('/networks/<network_name>', methods=['GET'])
