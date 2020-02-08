@@ -79,4 +79,17 @@ Onion Nodes will only be reachable if you have a Tor server running (`apt instal
 ### Deployment
 The crawler is best run via cron jobs, `--dump` instances should be scheduled separately from `--crawl` jobs.
 
+```
+
+# Start Crontab
+crontab -e
+
+# Schedule crawling every 10 minutes
+*/10 * * * * cd /groestl-nodes/ && /usr/bin/python3.7 crawler.py --crawl
+
+# Schedule dumping every 15 minutes
+*/15 * * * * cd /groestl-nodes/ && /usr/bin/python3.7 crawler.py --dump
+
+```
+
 `flock` should be used to prevent multiple instances from running concurrently
